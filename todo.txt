@@ -1,0 +1,6 @@
+- create module jdbc
+
+- add repositories and test for h2 datasource
+- add logback configuration file
+- add test container
+

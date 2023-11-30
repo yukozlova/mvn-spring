@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.me</groupId>
+        <artifactId>mvn-spring</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.example</groupId>
+    <artifactId>jdbc</artifactId>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- BOOT Version
+                H2DB on classpath & MySql connector on/off no matter & NO app datasource properties -> datasource H2DB -> repository is created -> ok
+                MySql connector & app datasource properties & H2DB on/off no matter -> datasource MySql -> repository is created -> ok
+                NO H2DB & MySql connector on/off no matter & NO app datasource properties -> Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
+
+        <!-- NO BOOT Version
+                H2DB on classpath & MySql connector on/off no matter & NO app datasource properties -> datasource H2DB -> repository is created -> ok
+                H2DB on classpath & MySql connector on/off no matter & app datasource properties -> Field repository in org.me.org.me.jdbc.JdbcMain required a bean of type 'org.me.repository.CashCardRepository' that could not be found.
+                MySql connector & app datasource properties on/off no matter -> No qualifying bean of type 'org.me.repository.CashCardRepository' available
+                    Datasource needs to be configured for MySql
+        -->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.data</groupId>-->
+        <!--            <artifactId>spring-data-jdbc</artifactId>-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.h2database</groupId>-->
+        <!--            <artifactId>h2</artifactId>-->
+        <!--            <version>2.2.224</version>-->
+        <!--&lt;!&ndash;            <scope>test</scope>&ndash;&gt;-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
